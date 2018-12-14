@@ -1,0 +1,47 @@
+<ng-content></ng-content>
+<div class="container">
+<div class="header">
+<h3 class="header-heading">Estos son los productos con el tipo de producto: {{this.id}}</h3>
+</div>
+
+<div class="content">
+
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Id</th>
+				<th>Name</th>
+				<th>Sale Price</th>
+				<th>Cost Price</th>
+
+			</tr>
+		</thead>
+		<tbody  *ngFor="let producto of productos; let indice=index">
+			<tr>
+				<td>{{producto.id}}</td>
+				<td>{{producto.name}}</td>
+				<td>{{producto.salePrice}}</td>
+				<td>{{producto.costPrice}}</td>
+
+				<td><button (click)="comprar(datos.cupon,datos.empleadoId,producto.id)">Comprar</button> </td>
+
+			</tr>
+		</tbody>
+
+
+	</table>
+	<br>
+	<br>
+	<table class="table table-striped">
+<tr>
+		<td>	<label> Id de Empleado: </label><input [(ngModel)]="datos.empleadoId" type="text" size="10"></td>
+</tr>
+<tr>
+		<td>  <label> Numero de Cupon: </label><input [(ngModel)]="datos.cupon" type="text" size="20"></td>
+</tr>
+</table>
+<router-outlet></router-outlet>
+
+
+</div>
+</div>

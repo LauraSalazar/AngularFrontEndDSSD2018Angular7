@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="header">
+    <h1 class="header-heading">Bienvenido a Venta On Line</h1>
+  </div>
+
+  <div class="content">
+
+
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Initials</th>
+
+
+          </tr>
+        </thead>
+        <tbody *ngFor="let tipoproducto of tipoproductos">
+          <tr>
+            <td>{{tipoproducto.id}}</td>
+            <td>{{tipoproducto.description}}</td>
+            <td>{{tipoproducto.initials}}</td>
+
+            <td><input class="btn" type="submit" value="Ir" (click)="onSelect(tipoproducto)"></td>
+          </tr>
+        </tbody>
+      </table>
+<router-outlet></router-outlet>
+
+
+  </div>
+</div>
