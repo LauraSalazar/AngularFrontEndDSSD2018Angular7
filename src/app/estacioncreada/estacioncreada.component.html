@@ -1,0 +1,56 @@
+<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Datos de la nueva Estacion</h1>
+		</div>
+
+		<div class="content">
+			<table class="table table-striped">
+				<thead>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Nombre</th>
+						<th>{{this.estacion.nombre}}</th>
+
+					</tr>
+					<tr>
+						<th>Codigo Postal</th>
+						<th>{{this.estacion.codigopostal}}</th>
+					</tr>
+					<tr>
+						<th>Latitud</th>
+						<th>{{this.estacion.latitud}}</th>
+					</tr>
+					<tr>
+						<th>Longitud</th>
+						<th>{{this.estacion.longitud}}</th>
+					</tr>
+					<tr>
+						    <th>Estado</th>					
+					        <th>
+					        	<select>
+	                			<option *ngFor="let x of estados" [value]="x.id" [selected]="this.estacion.estado == x.id">{{x.name}}</option>
+	            				</select>
+	            			</th>
+					</tr>
+					<tr>
+						<th>Abierto Desde</th>
+						<th>{{this.estacion.abiertodesde}}</th>
+					</tr>
+					<tr>
+						<th>Abierto Hasta</th>
+						<th>{{this.estacion.abiertohasta}}</th>
+					</tr>
+					<tr>
+						<th>Cantidad de Bicicletas</th>
+						<th>{{this.estacion.cantidadbicicletasmax}}</th>
+					</tr>
+					<tr>
+						<th>Identificador Generado</th>
+						<th>{{this.estacion.id}}</th>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>

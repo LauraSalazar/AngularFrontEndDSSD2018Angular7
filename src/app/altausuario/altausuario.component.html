@@ -1,0 +1,111 @@
+<ng-content></ng-content>
+<div class="container">
+	<div class="header">
+		<h1 class="header-heading">Ingrese sus datos</h1>
+	</div>
+
+	<div class="content">
+		<table class="table table-striped">
+			<thead>
+			</thead>
+			<tbody>
+				<tr>
+					<th>DNI</th>
+					<th><input #dniText="ngModel" required [(ngModel)]="user.dni" size="10"></th>
+				</tr>
+				<tr>
+					<th>Nombre</th>
+					<th><input #nombreText="ngModel" required [(ngModel)]="user.nombres" size="30" /></th>
+				</tr>
+				<tr>
+					<th>Apellido</th>
+					<th><input #apellidoText="ngModel" required [(ngModel)]="user.apellido" size="30" /></th>
+				</tr>
+				<tr>
+					<th>Password</th>
+					<th><input #passwordText="ngModel" type="password" required [(ngModel)]="user.password" size="30"></th>
+				</tr>
+
+				<tr>
+					<th>Domicilio</th>
+					<th><input #domicilioText="ngModel" required [(ngModel)]="user.domicilio" size="30"></th>
+				</tr>
+
+				<tr>
+					<th>Fecha Nacimiento</th>
+					<th><input #fechaNacText="ngModel" required [(ngModel)]="user.fechaNac" size="30" /></th>
+				</tr>
+				<tr>
+					<th>E-Mail</th>
+					<th><input #emailText="ngModel" required [(ngModel)]="user.mail" size="30"></th>
+				</tr>
+				<!-- 					<tr> -->
+				<!-- 						<th>Habilitado</th> -->
+				<!-- 						<th><select  -->
+				<!-- 							[(ngModel)]="user.habilitado"> -->
+				<!-- 							<option value="" selected>--Seleccione--</option> -->
+				<!-- 									<option value="1">Inhabilitacion -->
+				<!-- 										definitiva</option> -->
+				<!-- 									<option value="2">Inhabilitadacion temporal</option> -->
+				<!-- 									<option value="3">Habilitada</option> -->
+				<!-- 							</select></th> -->
+				<!-- 					</tr> -->
+				<tr>
+					<th>Sexo</th>
+					<th><select #sexoText="ngModel" [(ngModel)]="user.sexo">
+							<option value="" selected>--Seleccione--</option>
+							<option value="F">Femenino</option>
+							<option value="M">Masculino</option>
+						</select></th>
+				</tr>
+			</tbody>
+		</table>
+		<br />
+		<table class="table table-striped">
+			<tr>
+				<th><button (click)="onSubmit()">Registrarme</button>
+				</th>
+				<th><button (click)="volver()">Volver</button>
+				</th>
+			</tr>
+		</table>
+		<br>
+		<table>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="dniText.touched && !dniText.valid">
+					Debe ingresar un DNI
+				</th>
+			</tr>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="nombreText.touched && !nombreText.valid">
+						Debe ingresar un nombre
+				</th>
+			</tr>
+			<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="apellidoText.touched && !apellidoText.valid">
+							Debe ingresar un apellido
+					</th>
+				</tr>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="passwordText.touched && !passwordText.valid">
+						Debe ingresar un password
+				</th>
+			</tr>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="domicilioText.touched && !domicilioText.valid">
+						Debe ingresar un domicilio
+				</th>
+			</tr>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="fechaNacText.touched && !fechaNacText.valid">
+						Debe ingresar una fecha de Nacimiento
+				</th>
+			</tr>
+			<tr>
+				<th style="color:rgb(122, 117, 117)" *ngIf="emailText.touched && !emailText.valid">
+						Debe ingresar un email
+				</th>
+			</tr>
+		</table>
+	</div>
+</div>

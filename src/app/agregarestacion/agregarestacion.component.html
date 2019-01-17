@@ -1,0 +1,60 @@
+		<ng-content></ng-content>
+		<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Agregar Estacion</h1>
+		</div>
+
+		<div class="content">
+				<table class="table table-striped">
+					<thead>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Nombre</th>
+							<th><input [(ngModel)]="estacion.nombre" size="40"></th>
+						</tr>
+						<tr>
+							<th>Codigo Postal</th>
+							<th><input [(ngModel)]="estacion.codigopostal" size="30"></th>
+						</tr>
+						<tr>
+							<th>Estado</th>
+							<th><select [(ngModel)]="estacion.estado">
+									<option value="" selected>--Seleccione--</option>
+									<option value="1">Operativa</option>
+									<option value="2">Cerrada</option>
+									<option value="3">En Construccion</option>
+							</select></th>
+						</tr>
+						<tr>
+							<th>Longitud</th>
+							<th><input [(ngModel)]="estacion.longitud" size="10"></th>
+						</tr>
+						<tr>
+							<th>Latitud</th>
+							<th><input [(ngModel)]="estacion.latitud" size="10"></th>
+						</tr>
+						<tr>
+							<th>Abierto Desde:</th>
+							<th><input [(ngModel)]="estacion.abiertodesde" size="10"></th>
+						</tr>
+						<tr>
+							<th>Abierto Hasta:</th>
+							<th><input [(ngModel)]="estacion.abiertohasta" size="10"></th>
+						</tr>
+						<tr>
+							<th>Bicicletas Disponibles</th>
+							<th><input [(ngModel)]="estacion.cantidadbicicletasmax"
+								size="10"></th>
+						</tr>
+						<tr>
+							<th><button (click)="onSubmit()" >Guardar</button>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+		</div>
+	</div>

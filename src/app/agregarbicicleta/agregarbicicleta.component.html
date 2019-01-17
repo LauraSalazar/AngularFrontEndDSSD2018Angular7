@@ -1,0 +1,52 @@
+	<ng-content></ng-content>
+	<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Agregar Bicicleta</h1>
+		</div>
+
+		<div class="content">
+
+				<table class="table table-striped">
+					<thead>
+					</thead>
+					<tbody>
+						<tr>
+							<th>Numero de Cuadro</th>
+							<th><input [(ngModel)]="bicicleta.numeroCuadro" size="40"></th>
+						</tr>
+						<tr>
+							<th>Fecha Ingreso</th>
+							<th><input [(ngModel)]="bicicleta.fechaIngreso" size="40"></th>
+						</tr>
+						<tr>
+							<th>Estado</th>
+							<th><select [(ngModel)]="bicicleta.estado">
+									<option value="" selected>--Seleccione--</option>
+									<option value="1">Apta para uso</option>
+									<option value="2">En reparacion</option>
+									<option value="3">En desuso</option>
+									<option value="4">Denunciada</option>
+							</select></th>
+						</tr>
+
+						<tr>
+							<th>Ubicacion</th>
+							<th>
+					        	<select [(ngModel)]="bicicleta.ubicacionActual">
+					        	<option value="" selected>--Seleccione--</option>
+	                			<option *ngFor="let x of estaciones" [value]="x.id">{{x.nombre}}
+	                			</option>
+	            				</select>
+	            			</th>						
+						</tr>
+						<tr>
+							<th><button (click)="onSubmit()">Guardar</button>
+							</th>
+						</tr>
+					</tbody>
+				</table>
+
+
+
+		</div>
+	</div>

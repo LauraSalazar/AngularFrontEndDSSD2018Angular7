@@ -1,0 +1,37 @@
+<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Mis Bicicletas</h1>
+		</div>
+
+
+		<div class="content">
+
+			<br>
+			<form>
+				<table class="table table-striped">
+
+					<thead>
+						<tr>
+							<th>Numero de Cuadro</th>
+							<th>Ubicacion</th>
+							<th>Estado Actual</th>
+							<th>Denunciar mal estado</th>
+							<th>Comentario</th>
+						</tr>
+					</thead>
+					<tbody *ngFor="let devolverBicileta of this.misBicis">
+						<tr>
+							<th>{{devolverBicileta.numeroCuadro}}</th>
+							<th>{{devolverBicileta.ubicacionActual}}</th>
+							<th>{{devolverBicileta.estado}}</th>
+							<th><input type="checkbox" name="malEstado"></th>
+							<th><input type="text" name="comentario" size="30" /></th>
+							<th><button type="submit" class="btn">Devolver</button></th>
+						</tr>
+					</tbody>
+
+				</table>
+			</form>
+
+		</div>
+	</div>

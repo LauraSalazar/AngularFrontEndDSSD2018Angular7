@@ -1,0 +1,53 @@
+<ng-content></ng-content>
+
+<div class="container">
+  <div class="header">
+    <h1 class="header-heading">Bienvenido a LaPlataenBici</h1>
+  </div>
+</div>
+
+<div class="content">
+  <div class="main">
+    <form>
+      <table class="table table-striped">
+
+        <tr>
+          <th>Dni:</th>
+          <th>Password:</th>
+          <th></th>
+        </tr>
+        <tr>
+          <th>
+            <input #dniText="ngModel"
+            type="text"
+            id="dni" 
+            maxlength="20" 
+              [(ngModel)]="dni"
+              name="dni">
+            </th>
+
+          <th><input #passwordText="ngModel"
+            id="password" 
+            name="password" 
+            type="password" 
+            [(ngModel)]="password" 
+            maxlength="20"
+              required>
+          </th>
+          <th><button (click)="login(dni,password)">Login</button></th>
+        </tr>
+
+      </table>
+    </form>
+
+    <br />
+    <table class="table table-striped">
+      <tr>
+        <td><button routerLink="/altausuario">Registrese</button>
+        </td>
+      </tr>
+    </table>
+    <br />
+
+  </div>
+</div>

@@ -1,0 +1,50 @@
+<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Datos de su nuevo Usuario</h1>
+		</div>
+
+		<div class="content">
+			<table class="table table-striped">
+				<thead>
+				</thead>
+				<tbody>
+					<tr>
+						<th>DNI</th>
+						<th>{{this.user.dni}}</th>
+
+					</tr>
+					<tr>
+						<th>Nombre</th>
+						<th>{{this.user.nombres}}</th>
+					</tr>
+					<tr>
+						<th>Apellido</th>
+						<th>{{this.user.apellido}}</th>
+					</tr>
+						    <th>Sexo</th>					
+					        <th>
+					        	<select>
+	                			<option *ngFor="let x of sexos" [value]="x.id" [selected]="this.user.sexo == x.id">{{x.name}}</option>
+	            				</select>
+	            			</th>
+					<tr>
+						<th>Domicilio</th>
+						<th>{{this.user.domicilio}}</th>
+					</tr>
+					<tr>
+						<th>E-Mail</th>
+						<th>{{this.user.mail}}</th>
+					</tr>
+					<tr>
+						<th>Fecha Nacimiento</th>
+						<th>{{this.user.fechaNac}}</th>
+					</tr>
+					<tr>
+						<th>Identificador Generado</th>
+						<th>{{this.user.id}}</th>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>

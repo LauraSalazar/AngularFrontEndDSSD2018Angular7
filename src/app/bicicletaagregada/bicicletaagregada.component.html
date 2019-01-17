@@ -1,0 +1,40 @@
+<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Datos de la nueva Bicicleta</h1>
+		</div>
+
+		<div class="content">
+			<table class="table table-striped">
+				<thead>
+				</thead>
+				<tbody>
+					<tr>
+						<th>Numero de Cuadro</th>
+						<th>{{bicicleta.numeroCuadro}}</th>
+
+					</tr>
+					<tr>
+						<th>Fecha Ingreso</th>
+						<th>{{bicicleta.fechaIngreso}}</th>
+					</tr>
+					<tr>
+						    <th>Estado</th>					
+					        <th>
+					        	<select>
+	                			<option *ngFor="let x of estados" [value]="x.id" [selected]="this.bicicleta.estado == x.id">{{x.name}}</option>
+	            				</select>
+	            			</th>
+					</tr>
+					<tr>
+						<th>Ubicacion actual</th>
+						<th>{{bicicleta.ubicacionActual}}</th>
+					</tr>
+					<tr>
+						<th>Identificador Generado</th>
+						<th>{{bicicleta.id}}</th>
+					</tr>
+				</tbody>
+			</table>
+
+		</div>
+	</div>

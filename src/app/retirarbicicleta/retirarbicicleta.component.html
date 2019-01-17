@@ -1,0 +1,79 @@
+	<div class="container">
+		<div class="header">
+			<h1 class="header-heading">Bicicletas</h1>
+		</div>
+
+
+		<div class="content">
+
+			<table class="table table-striped">
+				<tr>
+					<th>Elija el criterio por el que desea filtrar:</th>
+				</tr>
+				<tr>
+					<th>Numero de Cuadro</th>
+					<th><input type="text" name="id" size="30"></th>
+				</tr>
+
+				<tr>
+					<th>Estado</th>
+					<th><select name="estado">
+							<option value="" selected>--Seleccione--</option>
+							<option value="operativa">Apto para uso</option>
+							<option value="cerrada">En reparacion</option>
+							<option value="endesuso">En desuso</option>
+							<option value="denunciada">Denunciada</option>
+					</select></th>
+				</tr>
+				<tr>
+					<th><input class="btn" type="submit" value="Buscar"></th>
+				</tr>
+
+			</table>
+			<br>
+			<form action="#">
+				<table class="table table-striped">
+					<thead>
+						<tr>
+
+							<th>Numero de Cuadro</th>
+							<th>Ubicacion</th>
+							<th>Estado Actual</th>
+
+
+						</tr>
+					</thead>
+					<tbody *ngFor="let bicicleta of this.misBicis">
+
+						<tr>
+
+							<th>{{bicicleta.numeroCuadro}}</th>
+							<th>{{bicicleta.ubicacionActual}}</th>
+							<th>{{bicicleta.estado}}</th>
+
+						<th>{{bicicleta.id}}</th>
+							<th><input type="submit" (click)="retirarBicicleta(bicicleta.id)" class="btn" value="Retirar"></th>
+						</tr>
+
+					</tbody>
+				</table>
+			</form>
+			<br>
+			<table class="table table-striped">
+				<tbody>
+
+					<tr>
+						<th>Ordenar por</th>
+						<th>
+						<select name="orden">
+								<option value="" selected>--Seleccione--</option>
+								<option value="id">Id</option>
+								<option value="estado">Estado</option>
+								<option value="longitud">Ubicacion</option>
+								<option value="fechaIngreso">Fecha Ingreso</option>
+						</select>
+						</th>
+					</tr>
+			</table>
+		</div>
+	</div>
