@@ -34,7 +34,7 @@
             maxlength="20"
               required>
           </th>
-          <th><button (click)="login(dni,password)">Login</button></th>
+          <th><button (click)="login(dni,password)" [disabled]="false">Login</button></th>
         </tr>
 
       </table>
@@ -43,7 +43,7 @@
     <br />
     <table class="table table-striped">
       <tr>
-        <td><button routerLink="/altausuario">Registrese</button>
+        <td><button [routerLink]="['/altausuario', 0]">Registrese</button>
         </td>
       </tr>
     </table>

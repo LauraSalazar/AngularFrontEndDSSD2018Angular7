@@ -11,7 +11,7 @@ import { SessionStorageService } from 'ngx-webstorage';
 })
 export class AdministradorviewComponent implements OnInit {
 
-  private esAdministrador: boolean;
+   esAdministrador: boolean;
 
   constructor(private http: HttpClient, private host: HostService, private localSt: SessionStorageService) {
 
@@ -20,7 +20,7 @@ export class AdministradorviewComponent implements OnInit {
   ngOnInit() {
     console.log('Este es el valor de categoria de la session: ' + this.localSt.retrieve('categoria'));
     console.log('Esto es el resultado de comparar: ' + (this.localSt.retrieve('categoria') === 2));
-      this.esAdministrador = (this.localSt.retrieve('categoria') === 2);
+    this.esAdministrador = (this.localSt.retrieve('categoria') === 2);
   }
 
 }

@@ -1,21 +1,30 @@
 import { Injectable } from '@angular/core';
 import { Estacion } from './estacion';
-import { routing } from './app.router';
-import { Response, RequestOptions, Headers } from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { HostService } from './host.service';
-import { catchError } from 'rxjs/operators';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable()
 export class EstacionserviceService {
   // host
 
-  private urlAgregar = this.host.host + '/LaPlataEnBici/rest/Estacion/create';
-  private urlEstaciones = this.host.host + '/LaPlataEnBici/rest/Estacion/listadoEstaciones';
-  private urlEstacion = this.host.host + '/LaPlataEnBici/rest/Estacion/';
+  private urlAgregar = this.host.host + '/Estacion/create';
+  private urlEstaciones = this.host.host + '/Estacion/listadoEstaciones';
+  private urlEstacion = this.host.host + '/Estacion';
+  private urlEstacionModificar = this.host.host + '/Estacion/modificar';
+
+  modificarEstacion(estacion: Estacion): Observable<Estacion> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    console.log('Entro en modificar estacion');
+    return this.http.post<Estacion>(this.urlEstacionModificar, estacion, httpOptions);
+  }
 
   agregarEstacion(est: Estacion): Observable<Estacion> {
 
@@ -48,9 +57,9 @@ export class EstacionserviceService {
     return Observable.throw(msg);
   }
 
-  getEstacion(id: number): Observable<Estacion> {
+  getEstacion(id): Observable<Estacion> {
     console.log('Entro en getEstacion de Estacion Service' + id);
-    const url = this.urlEstacion + id;
+    const url = this.urlEstacion + '/' + id;
     console.log('Este es el valor del url del get Estacion: ' + url);
     return this.http.get<Estacion>(
       // 'http://localhost:8080/LaPlataEnBici/rest/Usuario/32768')

@@ -17,23 +17,27 @@ import { RetirarbicicletaComponent } from './retirarbicicleta/retirarbicicleta.c
 import { NoallowedComponent } from './noallowed/noallowed.component';
 import { LoginComponent } from './login/login.component';
 import { DevolverbicicletaComponent } from './devolverbicicleta/devolverbicicleta.component';
+import { ModificarestacionComponent } from './modificarestacion/modificarestacion.component';
+import { BicicletaprestadaComponent } from './bicicletaprestada/bicicletaprestada.component';
 
 const routes: Routes = [
   { path: 'usuarioview/:id', component: UsuarioviewComponent },
-  { path: 'altausuario', component: AltausuarioComponent },
+  { path: 'altausuario/:id', component: AltausuarioComponent },
   { path: 'administradorview', component: AdministradorviewComponent },
   { path: 'listadousuarios', component: ListadousuariosComponent },
-  { path: 'usuariocreado/:id', component: UsuariocreadoComponent },
-  { path: 'agregarestacion', component: AgregarestacionComponent },
-  { path: 'estacioncreada/:id', component: EstacioncreadaComponent },
-  { path: 'listadoestaciones', component: ListadoestacionesComponent },
-  { path: 'agregarbicicleta', component: AgregarbicicletaComponent },
+  { path: 'usuariocreado/:id/:modo', component: UsuariocreadoComponent },
+  { path: 'agregarestacion/:id', component: AgregarestacionComponent },
+  { path: 'estacioncreada/:id/:modo', component: EstacioncreadaComponent },
+  { path: 'listadoestaciones/:id', component: ListadoestacionesComponent },
+  { path: 'agregarbicicleta/:id', component: AgregarbicicletaComponent },
   { path: 'listadobicicleta', component: ListadobicicletaComponent },
-  { path: 'bicicletaagregada/:id', component: BicicletaagregadaComponent },
+  { path: 'bicicletaagregada/:id/:modo', component: BicicletaagregadaComponent },
   { path: 'retirarbicicleta/:id', component: RetirarbicicletaComponent },
   { path: 'noallowed', component: NoallowedComponent },
   { path: 'devolverbicicleta/:id', component: DevolverbicicletaComponent },
-  { path: '', component: LoginComponent },
+  { path: 'modificarestacion/:id', component: ModificarestacionComponent },
+  { path: 'bicicletaprestada/:idPrestamo', component: BicicletaprestadaComponent },
+  { path: 'jyaa_2017_grupo28_final', component: LoginComponent },
 ];
 
-export const routing = RouterModule.forRoot(routes);
+export const routing = RouterModule.forRoot(routes, {onSameUrlNavigation: 'reload'});

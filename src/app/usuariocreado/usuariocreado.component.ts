@@ -3,6 +3,7 @@ import { UsuarioserviceService } from '../usuarioservice.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Estado } from '../Estado';
+import { NavigationserviceService } from '../navigationservice.service';
 
 @Component({
   selector: 'app-usuariocreado',
@@ -15,8 +16,10 @@ export class UsuariocreadoComponent implements OnInit {
        ' ', ' ', ' ', ' ', ' ', ' ');
 
  public sexos: Estado[] = [] ;
+ modo: string;
 
-  constructor(private usuarioService: UsuarioserviceService, private route: ActivatedRoute
+  constructor(private usuarioService: UsuarioserviceService, private route: ActivatedRoute,
+    private navigateService: NavigationserviceService
   ) {
      console.log('Entro en el constructor DE USUARIOCREADO');
    }
@@ -25,6 +28,7 @@ export class UsuariocreadoComponent implements OnInit {
   ngOnInit() {
       console.log('Entro en el ngOnInit, valor del id generado en usuariocreado:' + this.route.snapshot.params['id']);
       this.user.id = this.route.snapshot.params['id'];
+      this.modo = this.route.snapshot.params['modo'];
       this.usuarioService.getUser(this.user.id).subscribe(
     usuario => this.user = usuario,
     error => this.usuarioService.handleError = <any>error);
@@ -39,10 +43,15 @@ export class UsuariocreadoComponent implements OnInit {
 
         this.sexos.push(new Estado('M', 'Masculino'));
         this.sexos.push(new Estado('F', 'Femenino'));
-
-
    }
 
+   volver() {
+    if (this.modo === 'agregado') {
+      this.navigateService.volver('', '/altausuario/' + 0);
+    } else {
+      this.navigateService.volver('', '/listadousuarios');
+    }
+  }
   }
 
 

@@ -1,23 +1,42 @@
 import { Injectable } from '@angular/core';
 import { Bicicleta } from './bicicleta';
-import { routing } from './app.router';
-import {Http, Response, RequestOptions, Headers} from '@angular/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { HostService } from './host.service';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DevolverBicicleta } from './DevolverBicicleta';
 import { SessionStorageService } from 'ngx-webstorage';
 
 @Injectable()
 export class BicicletaserviceService {
- private urlAgregar = this.host.host + '/LaPlataEnBici/rest/Bicicleta/create';
-  private urlBicicletas = this.host.host + '/LaPlataEnBici/rest/Bicicleta/listadoBicicletas';
-  private urlBicicletasLibres = this.host.host + '/LaPlataEnBici/rest/Bicicleta/listadoBicicletasLibres';
-  private urlBicicleta = this.host.host + '/LaPlataEnBici/rest/Bicicleta/';
-  private urlMisBicicletas = this.host.host + '/LaPlataEnBici/rest/Bicicleta/misBicicletas';
-  private urlRetirar = this.host.host + '/LaPlataEnBici/rest/Bicicleta/retirarBicicleta';
+ private urlAgregar = this.host.host + '/Bicicleta/create';
+  private urlBicicletas = this.host.host + '/Bicicleta/listadoBicicletas';
+  private urlBicicletasLibres = this.host.host + '/Bicicleta/listadoBicicletasLibres';
+  private urlBicicleta = this.host.host + '/Bicicleta/';
+  private urlBicicletasLibresOrdenUbicacion = this.host.host + '/Bicicleta/listadoBicicletasLibresOrdenUbicacion';
+  private urlBicicletaOrdenUbicacion = this.host.host + '/Bicicleta/listadoBicicletasOrdenUbicacion';
+
+  private urlBicicletasLibresOrdenEstado = this.host.host + '/Bicicleta/listadoBicicletasLibresOrdenEstado';
+  private urlBicicletaOrdenEstado = this.host.host + '/Bicicleta/listadoBicicletasOrdenEstado';
+  private urlBicicletasLibresOrdenNumeroCuadro = this.host.host + '/Bicicleta/listadoBicicletasLibresOrdenNumeroCuadro';
+  private urlBicicletaOrdenNumeroCuadro = this.host.host + '/Bicicleta/listadoBicicletasOrdenNumeroCuadro';
+  private urlModificar = this.host.host + '/Bicicleta/modificar';
+
+ modificarBicicleta(bici: Bicicleta): Observable<Bicicleta> {
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Authorization': 'my-auth-token'
+      })
+    };
+    console.log('Entro en agregarBicicleta: ' + JSON.stringify(bici));
+
+    return this.http.post<Bicicleta>(this.urlModificar,  bici, httpOptions);
+       // console.log('Este es el valor del id generado desde web service' + res.json()),
+
+  }
 
   agregarBicicleta(bici: Bicicleta): Observable<Bicicleta> {
 
@@ -27,16 +46,14 @@ export class BicicletaserviceService {
         'Authorization': 'my-auth-token'
       })
     };
-    console.log('Entro en agregarEstacion: ' + JSON.stringify(bici));
+    console.log('Entro en agregarBicicleta: ' + JSON.stringify(bici));
 
     return this.http.post<Bicicleta>(this.urlAgregar,  bici, httpOptions);
        // console.log('Este es el valor del id generado desde web service' + res.json()),
 
   }
 
-  getMisBicicletas(id): Observable<DevolverBicicleta[]> {
-    return this.http.get<DevolverBicicleta[]>(this.urlMisBicicletas + '/' + id);
-  }
+
 
   getBicicletas(): Observable<Bicicleta[]> {
     console.log('Esta es la categoria desde getBicicletas ' + this.localSt.retrieve('categoria'));
@@ -67,8 +84,38 @@ export class BicicletaserviceService {
              url);
   }
 
-  retirarBicicleta(idBicicleta, idUsuario): Observable<Bicicleta> {
-    return this.http.get<Bicicleta>(this.urlRetirar + '/' + idBicicleta + '/' + idUsuario );
+  ordenarPorUbicacion(): Observable<Bicicleta[]> {
+
+    console.log('Esta es la categoria desde getBicicletas ' + this.localSt.retrieve('categoria'));
+    if (this.localSt.retrieve('categoria') === 1) {
+        console.log('Pido bicicletas libres');
+        return this.http.get<Bicicleta[]>(this.urlBicicletasLibresOrdenUbicacion);
+    } else {
+      return this.http.get<Bicicleta[]>(this.urlBicicletaOrdenUbicacion
+        );
+    }
   }
 
+  ordenarPorEstado(): Observable<Bicicleta[]> {
+
+    console.log('Esta es la categoria desde getBicicletas ' + this.localSt.retrieve('categoria'));
+    if (this.localSt.retrieve('categoria') === 1) {
+        console.log('Pido bicicletas libres');
+        return this.http.get<Bicicleta[]>(this.urlBicicletasLibresOrdenEstado);
+    } else {
+      return this.http.get<Bicicleta[]>(this.urlBicicletaOrdenEstado
+        );
+    }
+  }
+
+  ordenarPorNumeroCuadro(): Observable<Bicicleta[]> {
+
+    console.log('Esta es la categoria desde getBicicletas ' + this.localSt.retrieve('categoria'));
+    if (this.localSt.retrieve('categoria') === 1) {
+        console.log('Pido bicicletas libres');
+        return this.http.get<Bicicleta[]>(this.urlBicicletasLibresOrdenNumeroCuadro);
+    } else {
+      return this.http.get<Bicicleta[]>(this.urlBicicletaOrdenNumeroCuadro);
+    }
+  }
 }

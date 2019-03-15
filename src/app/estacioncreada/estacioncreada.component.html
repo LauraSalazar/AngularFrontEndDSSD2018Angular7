@@ -1,8 +1,10 @@
 <div class="container">
-		<div class="header">
+		<div *ngIf="modo === 'agregada'" class="header">
 			<h1 class="header-heading">Datos de la nueva Estacion</h1>
 		</div>
-
+		<div *ngIf="modo === 'modificada'" class="header">
+			<h1 class="header-heading">La estacion ha sido modificada</h1>
+		</div>
 		<div class="content">
 			<table class="table table-striped">
 				<thead>
@@ -28,9 +30,7 @@
 					<tr>
 						    <th>Estado</th>					
 					        <th>
-					        	<select>
-	                			<option *ngFor="let x of estados" [value]="x.id" [selected]="this.estacion.estado == x.id">{{x.name}}</option>
-	            				</select>
+					         {{this.estacion.estado}}
 	            			</th>
 					</tr>
 					<tr>
@@ -49,6 +49,10 @@
 						<th>Identificador Generado</th>
 						<th>{{this.estacion.id}}</th>
 					</tr>
+					<tr>
+							<th><button (click)="volver()">Volver</button>
+							</th>
+						</tr>
 				</tbody>
 			</table>
 

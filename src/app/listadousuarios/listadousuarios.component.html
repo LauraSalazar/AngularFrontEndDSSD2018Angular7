@@ -1,64 +1,62 @@
+<div class="container">
+	<div class="header">
+		<h1 class="header-heading">Usuarios</h1>
+	</div>
 
-	<div class="container">
-		<div class="header">
-			<h1 class="header-heading">Usuarios</h1>
-		</div>
 
+	<div class="content">
+		<form>
 
-		<div class="content">
-			<form>
+			<table class="table table-striped">
+				<tr>
+					<th>Elija el criterio por el que desea filtrar:</th>
+				</tr>
+				<tr>
+					<th>Nombre</th>
+					<th><input type="text" name="nombre" size="30"></th>
+				</tr>
+				<tr>
+					<th>DNI</th>
+					<th><input type="text" name="dni" size="20"></th>
+				</tr>
 
-<table class="table table-striped">
-					<tr>
-						<th>Elija el criterio por el que desea filtrar:</th>
-					</tr>
+				<tr>
+					<th><input class="btn" type="submit" value="Buscar"></th>
+				</tr>
+
+			</table>
+			<br>
+			<table class="table table-striped">
+				<thead>
 					<tr>
 						<th>Nombre</th>
-						<th><input type="text" name="nombre" size="30"></th>
-					</tr>
-					<tr>
+						<th>Apellido</th>
 						<th>DNI</th>
-						<th><input type="text" name="dni" size="20"></th>
+						<th>Domicilio</th>
+						<th>Mail</th>
+
 					</tr>
-	
+				</thead>
+				<tbody *ngFor="let usuario of this.usuarios">
+
 					<tr>
-						<th><input class="btn" type="submit" value="Buscar"></th>
-					</tr>
+						<td>{{usuario.nombres}}</td>
+						<td>{{usuario.apellido}}</td>
+						<td>{{usuario.dni}}</td>
+						<td>{{usuario.domicilio}}</td>
+						<td>{{usuario.mail}}</td>
+						<td><a routerLink="/eliminarbicicleta">Eliminar</a></td>
+						<td><a [routerLink]="['/altausuario', usuario.id]">Modificar</a></td>
+<!-- 						<td>
+							<select>
+								<option *ngFor="let x of estados" [value]="x.id" [selected]="usuario.habilitado == x.id">{{x.name}}</option>
+							</select>
+						</td> -->
 
-				</table>
-					              	<br>
-				<table class="table table-striped">
-					<thead>
-						<tr>
-							<th>#</th>
-							<th>Nombre</th>
-							<th>Apellido</th>
-							<th>DNI</th>
-							<th>Domicilio</th>
-							<th>Mail</th>
-							<th>Habilitar/Deshabilitar</th>
-
-						</tr>
-					</thead>
-					<tbody *ngFor="let usuario of this.usuarios"> 
-				
-						<tr>
-							<td>{{usuario.id}}</td>
-							<td>{{usuario.nombres}}</td>
-							<td>{{usuario.apellido}}</td>
-							<td>{{usuario.dni}}</td>
-							<td>{{usuario.domicilio}}</td>							
-							<td>{{usuario.mail}}</td>
-					        <td>
-					        	<select>
-	                			<option *ngFor="let x of estados" [value]="x.id" [selected]="usuario.habilitado == x.id">{{x.name}}</option>
-	            				</select>
-	            			</td>
-		
 					</tr>
-					</tbody>
-				</table>
-	              	<br>
+				</tbody>
+			</table>
+			<br>
 			<table class="table table-striped">
 				<tbody>
 
@@ -68,12 +66,16 @@
 								<option value="nombre">Nombre</option>
 								<option value="apellido">Apellido</option>
 								<option value="dni">DNI</option>
-						</select></th>
+							</select></th>
+					</tr>
+					<tr>
+						<th><button (click)="volver()">Volver</button>
+						</th>
 					</tr>
 			</table>
 
-					
-			</form>
 
-		</div>
+		</form>
+
 	</div>
+</div>

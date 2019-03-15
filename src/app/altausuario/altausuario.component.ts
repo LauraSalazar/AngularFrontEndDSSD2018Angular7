@@ -1,55 +1,121 @@
 import { Usuario } from '../Usuario';
-import { LoggerService } from '../logger.service';
 import { Component, OnInit } from '@angular/core';
-import { UsuariomockserviceService } from '../usuariomockservice.service';
 import { UsuarioserviceService } from '../usuarioservice.service';
-import { NgModel } from '@angular/forms';
-import { NgForm } from '@angular/forms';
-import { FormsModule } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
+import { NavigationserviceService } from '../navigationservice.service';
 
 @Component({
   selector: 'app-altausuario',
   templateUrl: './altausuario.component.html',
   styleUrls: ['./altausuario.component.css']
 })
-export class AltausuarioComponent {
+export class AltausuarioComponent implements OnInit {
 
   user: Usuario = new Usuario(0, '', '', '',
-    '', '', '', '', '');
-  public myId = 0;
+  '', '', '', '', '');
+  public myId;
+  dniInvalido = false;
+  nombreInvalido = false;
+  apellidoInvalido = false;
+  passwordInvalido = false;
+  domicilioInvalido = false;
+  fechaInvalida = false;
+  emailInvalido = false;
+  enviado = false;
 
-  onSubmit() {
-    console.log('dni:' + this.user.dni);
-    console.log('nombres:' + this.user.nombres);
-    console.log('apellido:' + this.user.apellido);
-    console.log('fechaNac:' + this.user.fechaNac);
-    console.log('domicilio:' + this.user.domicilio);
-    console.log('mail:' + this.user.mail);
-    console.log('sexo:' + this.user.sexo);
-    if (this.user.dni !== '' && this.user.nombres !== '' && this.user.apellido !== '' && this.user.password !== '' &&
-    this.user.domicilio !== '' && this.user.fechaNac !== '' && this.user.fechaNac !== '') {
-      this.user = new Usuario(0, this.user.dni, this.user.apellido, this.user.nombres,
-        this.user.domicilio, this.user.fechaNac, this.user.sexo, this.user.mail, this.user.password);
-      this.user.id = 0;
-      console.log('Antes de llamar al usuarioService');
-      if (!this.user) { return; }
-      this.userService.agregarUsuario(this.user).subscribe(
-        usuario => this.route.navigate(['/usuariocreado', usuario]),
-        error => this.userService.handleError = <any>error);
-
-      console.log('Paso el agregarUsuario');
+  ngOnInit() {
+    this.enviado = false;
+    this.myId = this.router.snapshot.params['id'];
+    console.log('Esto es lo que tengo en id: ' + this.myId);
+    if (this.myId === '0') {
+      this.user = new Usuario(0, '', '', '',
+        '', '', '', '', '');
+    } else {
+      console.log('ENTRO POR EL ELSE modifica usuario');
+      this.userService.getUser(this.myId).subscribe(
+        user => this.user = user,
+      );
     }
   }
 
-  volver() {
-    this.route.navigate(['']);
+  onSubmit() {
+
+    if (this.user.dni.trim() === '') {
+      this.dniInvalido = true;
+    } else {
+      this.dniInvalido = false;
+    }
+
+    if (this.user.nombres.trim() === '') {
+      this.nombreInvalido = true;
+    } else {
+      this.nombreInvalido = false;
+    }
+
+    if (this.user.apellido.trim() === '0') {
+      this.apellidoInvalido = true;
+    } else {
+      this.apellidoInvalido = false;
+    }
+
+    if (this.user.password.trim() === '') {
+      this.passwordInvalido = true;
+    } else {
+      this.passwordInvalido = false;
+    }
+
+    if (this.user.domicilio.trim() === '') {
+      this.domicilioInvalido = true;
+    } else {
+      this.domicilioInvalido = false;
+    }
+
+    if (this.user.fechaNac.trim() === '') {
+      this.fechaInvalida = true;
+    } else {
+      this.fechaInvalida = false;
+    }
+
+    if (this.user.mail.trim() === '') {
+      this.emailInvalido = true;
+    } else {
+      this.emailInvalido = false;
+    }
+
+    if (this.dniInvalido || this.nombreInvalido || this.apellidoInvalido || this.domicilioInvalido ||
+      this.passwordInvalido || this.fechaInvalida || this.emailInvalido) {
+      return;
+    }
+    this.enviado = true;
+    if (this.myId === '0') {
+      this.userService.agregarUsuario(this.user).subscribe(
+        usuario => this.route.navigate(['/usuariocreado', usuario, 'agregado']),
+        error => this.userService.handleError = <any>error);
+
+      console.log('Paso el agregarUsuario');
+    } else {
+      console.log('Antes de llamar al modificar usuario');
+      this.userService.modificarUsuario(this.user).subscribe(
+        usuario =>  this.route.navigate(['/usuariocreado', usuario, 'modificado']),
+      );
+    }
   }
 
-  constructor(private userService: UsuarioserviceService, private route: Router
-  ) {
-    console.log('Paso el constructor de altausuario');
+
+volver() {
+  if (this.myId === '0') {
+    this.route.navigate(['/jyaa_2017_grupo28_final']);
+  } else {
+    this.route.navigate(['/listadousuarios']);
   }
+
+}
+
+constructor(private userService: UsuarioserviceService, private route: Router, private navigateService: NavigationserviceService,
+  private router: ActivatedRoute
+) {
+  console.log('Paso el constructor de altausuario');
+}
 }
 
 

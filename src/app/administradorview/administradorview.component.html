@@ -8,13 +8,13 @@
 		<ul class="nav">
 			<li><a href="#">Estaciones</a>
 				<ul>
-					<li><a routerLink="/agregarestacion">Agregar Estacion</a></li>
-					<li><a routerLink="/listadoestaciones">Estaciones</a></li>
+					<li><a [routerLink]="['/agregarestacion','0']">Agregar Estacion</a></li>
+					<li><a [routerLink]="['/listadoestaciones',2]">Estaciones</a></li>
 				</ul>
 			</li>
 			<li><a href="#">Bicicletas</a>
 				<ul>
-					<li><a routerLink="/agregarbicicleta">Agregar Bicicleta</a></li>
+					<li><a [routerLink]="['/agregarbicicleta',0]">Agregar Bicicleta</a></li>
 					<li><a routerLink="/listadobicicleta">Bicicletas</a></li>
 				</ul>
 			</li>
@@ -44,7 +44,7 @@
 	<table class="table table-striped">
 		<tbody>
 			<tr>
-				<th><a href="index.html">Logout</a></th>
+				<th><button [routerLink]="['/jyaa_2017_grupo28_final']">Logout</button></th>
 			</tr>
 		</tbody>
 	</table>

@@ -11,8 +11,8 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UsuarioviewComponent implements OnInit {
 
-  private esUsuario: boolean;
-  private myId;
+   esUsuario: boolean;
+   myId;
 
   constructor(private http: HttpClient, private host: HostService, private localSt: SessionStorageService,
     private route: ActivatedRoute) { }

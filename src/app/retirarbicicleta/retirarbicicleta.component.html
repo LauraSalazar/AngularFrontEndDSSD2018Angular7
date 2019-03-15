@@ -36,9 +36,9 @@
 					<thead>
 						<tr>
 
-							<th>Numero de Cuadro</th>
-							<th>Ubicacion</th>
-							<th>Estado Actual</th>
+							<th><a class="btn" (click)="bicicletaOrdenarPorNumeroCuadro()"> Numero de Cuadro</a></th>
+							<th><a class="btn" (click)="bicicletaOrdenarPorUbicacion()"> Ubicacion</a></th>
+							<th><a class="btn" (click)="bicicletaOrdenarPorEstado()"> Estado Actual</a></th>
 
 
 						</tr>
@@ -50,9 +50,7 @@
 							<th>{{bicicleta.numeroCuadro}}</th>
 							<th>{{bicicleta.ubicacionActual}}</th>
 							<th>{{bicicleta.estado}}</th>
-
-						<th>{{bicicleta.id}}</th>
-							<th><input type="submit" (click)="retirarBicicleta(bicicleta.id)" class="btn" value="Retirar"></th>
+							<th><input type="submit" [disabled]="enviado" (click)="retirarBicicleta(bicicleta.id)" class="btn" value="Retirar"></th>
 						</tr>
 
 					</tbody>
@@ -61,17 +59,9 @@
 			<br>
 			<table class="table table-striped">
 				<tbody>
-
 					<tr>
-						<th>Ordenar por</th>
 						<th>
-						<select name="orden">
-								<option value="" selected>--Seleccione--</option>
-								<option value="id">Id</option>
-								<option value="estado">Estado</option>
-								<option value="longitud">Ubicacion</option>
-								<option value="fechaIngreso">Fecha Ingreso</option>
-						</select>
+								<button (click)="volver()">Volver</button>
 						</th>
 					</tr>
 			</table>

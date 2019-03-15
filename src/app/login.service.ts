@@ -12,6 +12,6 @@ export class LoginService {
   constructor(private http: HttpClient, private host: HostService, private localSt: SessionStorageService) { }
 
   login(dni: string, password: string): Observable<any> {
-   return this.http.get<any>(this.host.host + '/LaPlataEnBici/rest/loginAuth/loginService/' + dni + '/' + password );
+   return this.http.get<any>(this.host.host + '/loginAuth/loginService/' + dni + '/' + password );
   }
 }

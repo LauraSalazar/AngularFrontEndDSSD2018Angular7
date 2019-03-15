@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpModule, Http } from '@angular/http';
-import { HttpClientModule, HttpParams } from '@angular/common/http';
+import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { AltausuarioComponent } from './altausuario/altausuario.component';
@@ -21,7 +21,6 @@ import { AgregarbicicletaComponent } from './agregarbicicleta/agregarbicicleta.c
 import { DevolverbicicletaComponent } from './devolverbicicleta/devolverbicicleta.component';
 import { RetirarbicicletaComponent } from './retirarbicicleta/retirarbicicleta.component';
 import { UsuariocreadoComponent } from './usuariocreado/usuariocreado.component';
-import { Router } from '@angular/router';
 import { EstacioncreadaComponent } from './estacioncreada/estacioncreada.component';
 import { EstacionserviceService } from './estacionservice.service';
 import { BicicletaagregadaComponent } from './bicicletaagregada/bicicletaagregada.component';
@@ -31,6 +30,9 @@ import { NgxWebstorageModule } from 'ngx-webstorage';
 import { NoallowedComponent } from './noallowed/noallowed.component';
 import { LoginService } from './login.service';
 import { LoginComponent } from './login/login.component';
+import { ModificarestacionComponent } from './modificarestacion/modificarestacion.component';
+import { BicicletaprestadaComponent } from './bicicletaprestada/bicicletaprestada.component';
+import { PrestamoserviceService } from './prestamoservice.service';
 
 @NgModule({
   declarations: [
@@ -52,6 +54,8 @@ import { LoginComponent } from './login/login.component';
     BicicletaagregadaComponent,
     NoallowedComponent,
     LoginComponent,
+    ModificarestacionComponent,
+    BicicletaprestadaComponent,
   ],
   imports: [
     BrowserModule,
@@ -69,7 +73,8 @@ import { LoginComponent } from './login/login.component';
     BicicletaserviceService,
     HostService,
     httpInterceptorProviders,
-    LoginService
+    LoginService,
+    PrestamoserviceService,
     ],
   bootstrap: [AppComponent]
 })

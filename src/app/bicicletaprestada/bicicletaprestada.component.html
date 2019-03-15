@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="header">
+    <h1 class="header-heading">Datos del prestamo</h1>
+  </div>
+
+  <div class="content">
+    <br>
+    <form action="#">
+      <table class="table table-striped">
+
+        <tbody>
+
+          <tr>
+            <th>Numero de Cuadro </th>
+            <th>{{prestamo.numeroCuadro}}</th>
+          </tr>
+          <tr>
+            <th>Ubicacion</th>
+            <th>{{prestamo.ubicacionActual}}</th>
+          </tr>
+          <tr>
+            <th>Solicitante</th>
+            <th>{{prestamo.nombreUsuario}}</th>
+          </tr>
+          <tr>
+              <th>Fecha Prestamo</th>
+              <th>{{prestamo.fechaInicio}}</th>
+            </tr>
+            <tr>
+              <th>
+                <button (click)="volver()" >Volver</button>
+              </th>
+            </tr>
+        </tbody>
+      </table>
+    </form>
+    <br>
+
+  </div>
+</div>

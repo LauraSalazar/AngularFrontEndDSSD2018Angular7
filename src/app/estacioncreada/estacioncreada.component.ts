@@ -1,8 +1,9 @@
 import { Estacion } from '../estacion';
 import { EstacionserviceService } from '../estacionservice.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Estado } from '../Estado';
+import { NavigationserviceService } from '../navigationservice.service';
 
 @Component({
   selector: 'app-estacioncreada',
@@ -11,16 +12,17 @@ import { Estado } from '../Estado';
 })
 export class EstacioncreadaComponent implements OnInit {
 
-estacion:  Estacion = new Estacion(0, ' ', ' ', ' ',
-       ' ', ' ', ' ', ' ', 0);
+estacion:  Estacion = new Estacion(0, '', '', '',
+       '', '', '', '', '');
  public estados: Estado[] = [] ;
-
-  constructor(private estacionService: EstacionserviceService, private route: ActivatedRoute) { 
+  modo;
+  constructor(private estacionService: EstacionserviceService, private route: ActivatedRoute, private router: Router,
+    private navigateService: NavigationserviceService) {
      console.log('Entro en el constructor DE ESTACIONCREADA');
      }
 
   ngOnInit() {
-
+    this.modo = this.route.snapshot.params['modo'];
       console.log('Entro en el ngOnInit, valor del id generado en estacioncreado:' + this.route.snapshot.params['id']);
       this.estacion.id = this.route.snapshot.params['id'];
       this.estacionService.getEstacion(this.estacion.id).subscribe(
@@ -39,5 +41,14 @@ estacion:  Estacion = new Estacion(0, ' ', ' ', ' ',
         this.estados.push(new Estado('2', 'Cerrada'));
         this.estados.push(new Estado('3', 'En construccion'));
   }
+
+  volver() {
+    if (this.modo === 'agregada') {
+    this.navigateService.volver('', '/agregarestacion/' + '0');
+  } else {
+    this.navigateService.volver('', '/listadoestaciones/' + '0');
+  }
+
+}
 
 }

@@ -10,7 +10,7 @@ export class Estacion {
    public estado: string,
    public abiertodesde: string,
    public abiertohasta: string,
-   public cantidadbicicletasmax: number,
+   public cantidadbicicletasmax: string,
 ) { }
 
 }

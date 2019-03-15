@@ -2,7 +2,8 @@ import { Usuario } from '../Usuario';
 import { UsuarioserviceService } from '../usuarioservice.service';
 import { Component, OnInit } from '@angular/core';
 import { Estado } from '../Estado';
-import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { NavigationserviceService } from '../navigationservice.service';
 
 @Component({
   selector: 'app-listadousuarios',
@@ -15,7 +16,7 @@ export class ListadousuariosComponent implements OnInit {
 public usuarios: Usuario[] = [];
 public estados: Estado[] = [];
 
-  constructor(private usuarioService: UsuarioserviceService) {
+  constructor(private usuarioService: UsuarioserviceService,  private router: Router, private navigateService: NavigationserviceService) {
 
   }
 
@@ -29,6 +30,10 @@ public estados: Estado[] = [];
         this.estados.push(new Estado('2', 'Inhabilitacion temporal'));
         this.estados.push(new Estado('3', 'Habilitado'));
 
+  }
+
+  volver() {
+    this.navigateService.volver('/usuarioview', '/administradorview');
   }
 
 }

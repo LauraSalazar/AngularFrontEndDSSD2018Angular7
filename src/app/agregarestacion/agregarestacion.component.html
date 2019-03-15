@@ -1,60 +1,107 @@
-		<ng-content></ng-content>
-		<div class="container">
-		<div class="header">
-			<h1 class="header-heading">Agregar Estacion</h1>
-		</div>
-
-		<div class="content">
-				<table class="table table-striped">
-					<thead>
-					</thead>
-					<tbody>
-						<tr>
-							<th>Nombre</th>
-							<th><input [(ngModel)]="estacion.nombre" size="40"></th>
-						</tr>
-						<tr>
-							<th>Codigo Postal</th>
-							<th><input [(ngModel)]="estacion.codigopostal" size="30"></th>
-						</tr>
-						<tr>
-							<th>Estado</th>
-							<th><select [(ngModel)]="estacion.estado">
-									<option value="" selected>--Seleccione--</option>
-									<option value="1">Operativa</option>
-									<option value="2">Cerrada</option>
-									<option value="3">En Construccion</option>
-							</select></th>
-						</tr>
-						<tr>
-							<th>Longitud</th>
-							<th><input [(ngModel)]="estacion.longitud" size="10"></th>
-						</tr>
-						<tr>
-							<th>Latitud</th>
-							<th><input [(ngModel)]="estacion.latitud" size="10"></th>
-						</tr>
-						<tr>
-							<th>Abierto Desde:</th>
-							<th><input [(ngModel)]="estacion.abiertodesde" size="10"></th>
-						</tr>
-						<tr>
-							<th>Abierto Hasta:</th>
-							<th><input [(ngModel)]="estacion.abiertohasta" size="10"></th>
-						</tr>
-						<tr>
-							<th>Bicicletas Disponibles</th>
-							<th><input [(ngModel)]="estacion.cantidadbicicletasmax"
-								size="10"></th>
-						</tr>
-						<tr>
-							<th><button (click)="onSubmit()" >Guardar</button>
-							</th>
-						</tr>
-					</tbody>
-				</table>
-
-
-
-		</div>
+<ng-content></ng-content>
+<div class="container">
+	<div *ngIf="modificar === '0'" class="header">
+		<h1 class="header-heading">Agregar Estacion</h1>
 	</div>
+	<div *ngIf="modificar !== '0'" class="header">
+		<h1 class="header-heading">Modificar Estacion</h1>
+	</div>
+	<div class="content">
+		<table class="table table-striped">
+			<thead>
+			</thead>
+			<tbody>
+				<tr>
+					<th>Nombre</th>
+					<th><input #nombreText="ngModel" required [(ngModel)]="estacion.nombre" size="30"></th>
+				</tr>
+				<tr>
+					<th>Codigo Postal</th>
+					<th><input #postalText="ngModel" required [(ngModel)]="estacion.codigopostal" size="10"></th>
+				</tr>
+				<tr>
+					<th>Estado</th>
+					<th><select #estadoText="ngModel" required [(ngModel)]="estacion.estado">
+							<option value="" selected>--Seleccione--</option>
+							<option value="Operativa">Operativa</option>
+							<option value="Cerrada">Cerrada</option>
+							<option value="En Construccion">En Construccion</option>
+						</select></th>
+				</tr>
+				<tr>
+					<th>Longitud</th>
+					<th><input #longitudText="ngModel" required [(ngModel)]="estacion.longitud" size="10"></th>
+				</tr>
+				<tr>
+					<th>Latitud</th>
+					<th><input #latitudText="ngModel" required [(ngModel)]="estacion.latitud" size="10"></th>
+				</tr>
+				<tr>
+					<th>Abierto Desde:</th>
+					<th><input #abiertoDesde="ngModel" required [(ngModel)]="estacion.abiertodesde" size="10"></th>
+				</tr>
+				<tr>
+					<th>Abierto Hasta:</th>
+					<th><input #abiertoHasta="ngModel" required [(ngModel)]="estacion.abiertohasta" size="10"></th>
+				</tr>
+				<tr>
+					<th>Bicicletas Disponibles</th>
+					<th><input #bicicletasDisponiblesText="ngModel" required [(ngModel)]="estacion.cantidadbicicletasmax" size="10"></th>
+				</tr>
+				<tr>
+					<th><button [disabled]="enviado" (click)="onSubmit()">Guardar</button>
+					</th>
+					<th><button (click)="volver()">Volver</button>
+					</th>
+				</tr>
+				<!-- 		</tr>
+			<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="nombreText.touched && !nombreText.valid">
+						Debe ingresar un Nombre
+					</th>
+				</tr> -->
+
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="nombreInvalido">
+						Debe ingresar un Nombre
+					</th>
+				</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="codigoPostalInvalido">
+						Debe ingresar un Codigo Postal
+					</th>
+				</tr>
+				<tr>
+						<th style="color:rgb(122, 117, 117)" *ngIf="estadoInvalido">
+							Debe seleccionar un estado
+						</th>
+					</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="longitudInvalida">
+						Debe ingresar un valor de longitud
+					</th>
+				</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="latitudInvalida">
+						Debe ingresar un valor de latitud
+					</th>
+				</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="abiertoDesdeInvalido">
+						Debe ingresar un horario de apertura
+					</th>
+				</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="abiertoHastaInvalido">
+						Debe ingresar un horario de cierre
+					</th>
+				</tr>
+				<tr>
+					<th style="color:rgb(122, 117, 117)" *ngIf="bicicletasDisponiblesInvalido">
+						Debe ingresar una Cantidad de Bicicletas Disponibles y debe ser un numero
+					</th>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>

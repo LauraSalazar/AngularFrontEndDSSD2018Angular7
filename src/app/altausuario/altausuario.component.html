@@ -1,9 +1,11 @@
 <ng-content></ng-content>
 <div class="container">
-	<div class="header">
+	<div *ngIf="myId === '0'" class="header">
 		<h1 class="header-heading">Ingrese sus datos</h1>
 	</div>
-
+	<div *ngIf="myId !== '0'" class="header">
+		<h1 class="header-heading">Modifique sus datos</h1>
+	</div>
 	<div class="content">
 		<table class="table table-striped">
 			<thead>
@@ -33,7 +35,7 @@
 
 				<tr>
 					<th>Fecha Nacimiento</th>
-					<th><input #fechaNacText="ngModel" required [(ngModel)]="user.fechaNac" size="30" /></th>
+					<th><input #fechaNacText="ngModel" required [(ngModel)]="user.fechaNac" size="15" /></th>
 				</tr>
 				<tr>
 					<th>E-Mail</th>
@@ -63,7 +65,7 @@
 		<br />
 		<table class="table table-striped">
 			<tr>
-				<th><button (click)="onSubmit()">Registrarme</button>
+				<th><button [disabled]="enviado" (click)="onSubmit()">Enviar</button>
 				</th>
 				<th><button (click)="volver()">Volver</button>
 				</th>
@@ -72,37 +74,37 @@
 		<br>
 		<table>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="dniText.touched && !dniText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="dniInvalido">
 					Debe ingresar un DNI
 				</th>
 			</tr>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="nombreText.touched && !nombreText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="nombreInvalido">
 						Debe ingresar un nombre
 				</th>
 			</tr>
 			<tr>
-					<th style="color:rgb(122, 117, 117)" *ngIf="apellidoText.touched && !apellidoText.valid">
+					<th style="color:rgb(122, 117, 117)" *ngIf="apellidoInvalido">
 							Debe ingresar un apellido
 					</th>
 				</tr>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="passwordText.touched && !passwordText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="passwordInvalido">
 						Debe ingresar un password
 				</th>
 			</tr>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="domicilioText.touched && !domicilioText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="domicilioInvalido">
 						Debe ingresar un domicilio
 				</th>
 			</tr>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="fechaNacText.touched && !fechaNacText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="fechaInvalida">
 						Debe ingresar una fecha de Nacimiento
 				</th>
 			</tr>
 			<tr>
-				<th style="color:rgb(122, 117, 117)" *ngIf="emailText.touched && !emailText.valid">
+				<th style="color:rgb(122, 117, 117)" *ngIf="emailInvalido">
 						Debe ingresar un email
 				</th>
 			</tr>

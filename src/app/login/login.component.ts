@@ -9,8 +9,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  private dni = '';
-  private password = '';
+   dni = '';
+   password = '';
   title = 'app';
   ngOnInit() {
 
@@ -38,12 +38,6 @@ login(dni, password) {
     if (data.categoria === 2) {
        this.route.navigate(['/administradorview']);
     }
-   if (this.dni.length < 8) {
-
-    }
-   if (this.password.length < 4 ) {
-
-   }
   });
 }
 }

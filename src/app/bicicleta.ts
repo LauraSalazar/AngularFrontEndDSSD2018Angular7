@@ -4,6 +4,7 @@ export class Bicicleta {
    public fechaIngreso: string,
    public estado: string,
    public numeroCuadro: string,
-   public ubicacionActual: string
+   public ubicacionActual: string,
+   public idEstacion: number
 ) { }
 }

@@ -14,7 +14,7 @@
 			</li>
 			<li><a href="#">Estaciones</a>
 				<ul>
-					<li><a routerLink="/listadoestaciones">listadoEstaciones</a></li>
+					<li><a [routerLink]="['/listadoestaciones',myId]">listadoEstaciones</a></li>
 				</ul>
 			</li>
 		</ul>
@@ -38,7 +38,7 @@
 	<table class="table table-striped">
 		<tbody>
 			<tr>
-				<th><button routerLink="">Logout</button></th>
+				<th><button [routerLink]="['/jyaa_2017_grupo28_final']">Logout</button></th>
 			</tr>
 		</tbody>
 	</table>
